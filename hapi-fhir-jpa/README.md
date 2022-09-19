@@ -12,7 +12,12 @@ A summary of changes is as below;
 - init() method is updated to inject properties from file "quartz.properties" on the classpath when scheduler's name is 
 "clustered".
 - a new method setDatasourcePropertiesFromEnv() takes care of actual property injection.
-  
+
+<br>
+
+#### Generate the jar
+
+To generate the JAR, mvn clean install command can be used with /hapi-fhir-jpa folder.
 
 <br>
 <br>
