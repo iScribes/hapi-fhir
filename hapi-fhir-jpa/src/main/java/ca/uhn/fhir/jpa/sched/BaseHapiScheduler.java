@@ -42,6 +42,7 @@ import org.quartz.impl.StdSchedulerFactory;
 import org.quartz.impl.matchers.GroupMatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import javax.annotation.Nonnull;
@@ -81,6 +82,10 @@ public abstract class BaseHapiScheduler implements IHapiScheduler {
 	@Override
 	public void init() throws SchedulerException {
 		setProperties();
+		if (myInstanceName != null && myInstanceName.equals("clustered")) {
+			myFactory.setConfigLocation(new ClassPathResource("quartz.properties"));
+			setDatasourcePropertiesFromEnv();
+		}
 		myFactory.setQuartzProperties(myProperties);
 		myFactory.setBeanName(myInstanceName);
 		myFactory.setSchedulerName(myThreadNamePrefix);
@@ -95,6 +100,19 @@ public abstract class BaseHapiScheduler implements IHapiScheduler {
 
 		myScheduler = myFactory.getScheduler();
 		myScheduler.standby();
+	}
+
+	private void setDatasourcePropertiesFromEnv() {
+		String datasourceUrl = System.getenv("org.quartz.dataSource.quartzds.URL");
+		if(datasourceUrl != null){
+			addProperty("org.quartz.dataSource.quartzds.URL", datasourceUrl);
+		}
+		String datasourceUserName = System.getenv("datasource_username");
+		String datasourcePassword = System.getenv("datasource_password");
+		if (datasourceUserName != null && datasourcePassword != null) {
+			addProperty("org.quartz.dataSource.quartzds.user", datasourceUserName);
+			addProperty("org.quartz.dataSource.quartzds.password", datasourcePassword);
+		}
 	}
 
 	protected void massageJobFactory(SchedulerFactoryBean theFactory) {
