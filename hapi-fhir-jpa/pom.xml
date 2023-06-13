@@ -105,5 +105,24 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>12.3.0.jre17-preview</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-core</artifactId>
+			<version>1.32.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-identity</artifactId>
+			<version>1.5.3</version>
+		</dependency>
+
 	</dependencies>
 </project>

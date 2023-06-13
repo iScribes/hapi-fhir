@@ -276,14 +276,14 @@ public abstract class BaseSearchParamExtractor implements ISearchParamExtractor 
 
 	private IExtractor<BaseResourceIndexedSearchParam> createTokenExtractor(IBaseResource theResource) {
 		String resourceTypeName = toRootTypeName(theResource);
-		String useSystem;
+		String useSystem = null;
 		if (getContext().getVersion().getVersion().equals(FhirVersionEnum.DSTU2)) {
-			if (resourceTypeName.equals("ValueSet")) {
-				ca.uhn.fhir.model.dstu2.resource.ValueSet dstu2ValueSet = (ca.uhn.fhir.model.dstu2.resource.ValueSet) theResource;
-				useSystem = dstu2ValueSet.getCodeSystem().getSystem();
-			} else {
-				useSystem = null;
-			}
+//			if (resourceTypeName.equals("ValueSet")) {
+//				ca.uhn.fhir.model.dstu2.resource.ValueSet dstu2ValueSet = (ca.uhn.fhir.model.dstu2.resource.ValueSet) theResource;
+//				useSystem = dstu2ValueSet.getCodeSystem().getSystem();
+//			} else {
+//				useSystem = null;
+//			}
 		} else {
 			if (resourceTypeName.equals("CodeSystem")) {
 				useSystem = extractValueAsString(myCodeSystemUrlValueChild, theResource);

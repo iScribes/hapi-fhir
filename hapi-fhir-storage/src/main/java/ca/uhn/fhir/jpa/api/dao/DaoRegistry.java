@@ -24,7 +24,7 @@ import ca.uhn.fhir.i18n.Msg;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.RuntimeResourceDefinition;
 import ca.uhn.fhir.jpa.api.IDaoRegistry;
-import ca.uhn.fhir.model.dstu2.valueset.ResourceTypeEnum;
+//import ca.uhn.fhir.model.dstu2.valueset.ResourceTypeEnum;
 import ca.uhn.fhir.rest.server.exceptions.InvalidRequestException;
 import org.apache.commons.lang3.Validate;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -206,9 +206,9 @@ public class DaoRegistry implements ApplicationContextAware, IDaoRegistry {
 		initializeMaps(theResourceDaos);
 	}
 
-	public IFhirResourceDao getSubscriptionDao() {
-		return getResourceDao(ResourceTypeEnum.SUBSCRIPTION.getCode());
-	}
+//	public IFhirResourceDao getSubscriptionDao() {
+//		return getResourceDao(ResourceTypeEnum.SUBSCRIPTION.getCode());
+//	}
 
 	public void setSupportedResourceTypes(String... theResourceTypes) {
 		setSupportedResourceTypes(toCollection(theResourceTypes));
